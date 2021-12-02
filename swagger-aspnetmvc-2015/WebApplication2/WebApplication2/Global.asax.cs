@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace WebApplication2
+namespace API.Server
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

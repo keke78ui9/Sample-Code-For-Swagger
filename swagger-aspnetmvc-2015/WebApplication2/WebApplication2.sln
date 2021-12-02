@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{0016E363-53A7-41CC-B678-DE12DB27925F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Server", "WebApplication2\API.Server.csproj", "{0016E363-53A7-41CC-B678-DE12DB27925F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIDemo", "APIDemo\APIDemo.csproj", "{2A372332-48E9-49AF-AAF1-78A81DB8AB87}"
 EndProject
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {507CC1B5-EE1C-4284-92CF-C66474AABAE2}
 	EndGlobalSection
 EndGlobal

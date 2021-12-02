@@ -1,13 +1,13 @@
 ﻿using System.Web.Http;
 using WebActivatorEx;
-using WebApplication2;
+using API.Server;
 using Swashbuckle.Application;
 using System.Reflection;
-using WebApplication2.Controllers;
+using API.Server.Controllers;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
-namespace WebApplication2
+namespace API.Server
 {
     public class SwaggerConfig
     {
@@ -35,7 +35,7 @@ namespace WebApplication2
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "WebApplication2");
+                        c.SingleApiVersion("v1", "API.Server");
 
                         // If your API has multiple versions, use "MultipleApiVersions" instead of "SingleApiVersion".
                         // In this case, you must provide a lambda that tells Swashbuckle which actions should be
