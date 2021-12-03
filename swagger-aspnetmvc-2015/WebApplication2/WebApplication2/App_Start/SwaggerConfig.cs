@@ -1,9 +1,8 @@
-﻿using System.Web.Http;
-using WebActivatorEx;
-using API.Server;
+﻿using API.Server;
 using Swashbuckle.Application;
 using System.Reflection;
-using API.Server.Controllers;
+using System.Web.Http;
+using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -14,8 +13,6 @@ namespace API.Server
         public static void Register()
         {
             var containingAssembly = typeof(SwaggerConfig).Assembly;
-            // getting the assembly my controller is in (PlatinumServices) assembly name
-            var anAssembly = Assembly.GetAssembly(typeof(ValuesController));
             GlobalConfiguration.Configuration 
                 .EnableSwagger(c =>
                     {
@@ -100,7 +97,7 @@ namespace API.Server
                         // more Xml comment files.
                         //
                         //c.IncludeXmlComments(GetXmlCommentsPath());
-                        c.IncludeXmlComments(string.Format(@"{0}\bin\APIDemo.XML", System.AppDomain.CurrentDomain.BaseDirectory));
+                        c.IncludeXmlComments(string.Format(@"{0}\bin\API.Controllers.XML", System.AppDomain.CurrentDomain.BaseDirectory));
 
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                         // exposed in your API. However, there may be occasions when more control of the output is needed.

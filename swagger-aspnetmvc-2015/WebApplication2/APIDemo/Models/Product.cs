@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace APIDemo.Models
+namespace API.Controllers.Models
 {
     /// <summary>
     /// my product
