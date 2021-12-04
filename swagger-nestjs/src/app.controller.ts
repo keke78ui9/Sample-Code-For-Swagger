@@ -1,12 +1,16 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { AppService } from './app.service';
-import {ApiTags} from '@nestjs/swagger';
+import {ApiResponse, ApiTags} from '@nestjs/swagger';
+import { CreateSampleModel } from './app.createModel';
 
+@ApiTags('MyBlog')
 @Controller('api/v1/sample')
 export class SampleController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
+  @ApiResponse({ status: 200, description: 'show all sample data'})  
+  @ApiResponse({ status: 500, description: 'exception'})  
   getAllSample(): string {
     return this.appService.getAllSamples();
   }
@@ -17,7 +21,7 @@ export class SampleController {
   }
 
   @Post('/sample')
-  addSample(@Body() createModel: any): string {
+  addSample(@Body() createModel: CreateSampleModel): CreateSampleModel {
     return this.appService.addSample(createModel);
   }
 
@@ -31,3 +35,7 @@ export class SampleController {
     return this.appService.deleteSample(id);
   }
 }
+function ApiUseTags(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+
