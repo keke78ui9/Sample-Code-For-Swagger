@@ -16,7 +16,7 @@ export class AppService {
     throw new Error('Method not implemented.');
   }
   getAllSamples(): string {
-    throw new Error('Method not implemented.');
+    return 'Hello World!';
   }
   getHello(): string {
     return 'Hello World!';
