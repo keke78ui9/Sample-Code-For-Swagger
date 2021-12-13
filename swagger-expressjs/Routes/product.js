@@ -1,5 +1,5 @@
-let express = require('express');
-let router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 let products = [{
     id: 1,
@@ -11,10 +11,56 @@ let products = [{
     price: 1.5
 }];
 
+function badRequest(res) {
+    res.status(400);
+    res.json({message: 'Bad Request'});    
+}
+
+/**
+ * @swagger
+ * definitions:
+ *   Product:
+ *     properties:
+ *       name:
+ *         type: string
+ *       price:
+ *         type: integer
+ */
+
+/** 
+ * @swagger 
+ * /product:
+ *   get: 
+ *     tags:
+ *          - Products
+ *     description: Get all Product 
+ *     responses:  
+ *       200: 
+ *         description: Success  
+ */ 
 router.get('/', (req, res) => {
     res.json(products);
 });
 
+/** 
+ * @swagger 
+ * /product/{id}:
+ *   get: 
+ *      tags:
+ *          - Products
+ *      description: Get Product by ID
+ *      produces:
+ *          - application/json
+ *      parameters:
+ *          - name: id
+ *            description: Product ID
+ *            in: path
+ *            required: true
+ *            trype: integer
+ *      responses:  
+ *          200: 
+ *              description: Success  
+ */ 
 router.get('/:id([0-9])', (req, res) => {
     let result = products.filter(_ => _.id == req.params.id);
     if (result.length > 0) {
@@ -25,7 +71,30 @@ router.get('/:id([0-9])', (req, res) => {
     }
 });
 
+/** 
+ * @swagger 
+ * /product:
+ *   post: 
+ *     tags:
+ *          - Products
+ *     description: Add product
+ *     produces:
+ *          - application/json
+ *     parameters:
+ *          - name: product
+ *            description: Product Object
+ *            in: body
+ *            required: true
+ *            schema:
+ *               $ref: '#/definitions/Product'
+ *     responses:  
+ *       200: 
+ *         description: Success  
+ */ 
 router.post('/', (req, res) => {
+
+    console.info('data', req.body.name);
+
     if (req.body.name && req.body.price) {
         
         let maxId = Math.max(...products.map((x) => x.id));
@@ -42,11 +111,29 @@ router.post('/', (req, res) => {
     }
 });
 
-function badRequest(res) {
-    res.status(400);
-    res.json({message: 'Bad Request'});    
-}
-
+/** 
+ * @swagger 
+ * /product/{id}:
+ *   put: 
+ *     tags:
+ *          - Products
+ *     description: update product by id
+ *     parameters:
+ *          - name: id
+ *            description: Product ID
+ *            in: path
+ *            required: true
+ *            trype: integer
+ *          - name: product
+ *            description: Product Object
+ *            in: body
+ *            required: true
+ *            schema:
+ *               $ref: '#/definitions/Product'
+ *     responses:  
+ *          200: 
+ *              description: Success  
+ */ 
 router.put('/:id', (req, res) => {
 
     if (req.body.name && req.body.price && req.params.id) {
@@ -66,6 +153,23 @@ router.put('/:id', (req, res) => {
     }
 });
 
+/** 
+ * @swagger 
+ * /product/{id}:
+ *   delete: 
+ *     tags:
+ *          - Products
+ *     description: remove product by id
+ *     parameters:
+ *          - name: id
+ *            description: Product ID
+ *            in: path
+ *            required: true
+ *            trype: integer
+ *     responses:  
+ *          200: 
+ *              description: Success  
+ */ 
 router.delete('/:id', (req, res) => {
     let index = products.findIndex(_ => _.id == req.params.id);
     if (index === null) {

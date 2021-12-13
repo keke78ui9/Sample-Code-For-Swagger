@@ -1,14 +1,27 @@
-let express = require('express');
-let product = require('./Routes/product');
+const express = require('express');
+const swaggerUI = require('swagger-ui-express');
+const swaggerJSDoc = require('swagger-jsdoc');
 
-let app = express();
+const product = require('./Routes/product');
+const swaggerOptions = require('./swaggerConfig');
+
+
+
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const swaggerDocs = swaggerJSDoc(swaggerOptions);  
+app.use('/swagger', swaggerUI.serve, swaggerUI.setup(swaggerDocs));  
+app.get('/swagger', function(req, res) {
+   res.setHeader('Content-Type', 'application/json');
+   res.send(swaggerDocs);
+ });
+
 app.use('/product', product);
 
-app.get('/', function(req, res){
-   res.send("Hello world!");
+app.get('/', (req, res) => {
+   res.send('');
 });
 
 app.listen(3000);
