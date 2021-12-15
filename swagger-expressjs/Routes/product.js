@@ -75,25 +75,23 @@ router.get('/:id([0-9])', (req, res) => {
  * @swagger 
  * /product:
  *   post: 
- *     tags:
- *          - Products
  *     description: Add product
- *     produces:
- *          - application/json
- *     parameters:
- *          - name: product
- *            description: Product Object
- *            in: body
- *            required: true
+ *     requestBody:
+ *       content:
+ *         application/json:
  *            schema:
- *               $ref: '#/definitions/Product'
+ *              type: object
+ *              properties:
+ *                  name:
+ *                      type: string
+ *                  price:
+ *                      type: integer
  *     responses:  
  *       200: 
  *         description: Success  
  */ 
 router.post('/', (req, res) => {
 
-    console.info('data', req.body.name);
 
     if (req.body.name && req.body.price) {
         
@@ -109,14 +107,13 @@ router.post('/', (req, res) => {
     else {
         badRequest(res);
     }
+
 });
 
 /** 
  * @swagger 
  * /product/{id}:
  *   put: 
- *     tags:
- *          - Products
  *     description: update product by id
  *     parameters:
  *          - name: id

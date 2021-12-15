@@ -7,8 +7,6 @@ const swaggerOptions = {
             version:'1.0.0',
             description: 'how to use Product API'
         },
-        host: 'localhost:3000',
-        basePath: '/'
    },  
    apis:['./Routes/*.js'],      
 };
