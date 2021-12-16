@@ -5,8 +5,6 @@ const swaggerJSDoc = require('swagger-jsdoc');
 const product = require('./Routes/product');
 const swaggerOptions = require('./swaggerConfig');
 
-
-
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,4 +22,4 @@ app.get('/', (req, res) => {
    res.send('');
 });
 
-app.listen(3000);
+app.listen(3106);

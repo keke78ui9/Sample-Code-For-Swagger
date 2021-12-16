@@ -4,16 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index"
   },
   "keywords": [],
   "author": "keke78ui9",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "multer": "^1.4.4",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.2.0"
   },
