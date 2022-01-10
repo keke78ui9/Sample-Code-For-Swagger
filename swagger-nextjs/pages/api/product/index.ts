@@ -1,13 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
-
-type Data = {
-  name: string
-}
+import type { NextApiRequest, NextApiResponse } from 'next';
+import ProductService from '../../../lib/productService';
 
 /** 
  * @swagger 
- * /product:
+ * /api/product:
  *   get: 
  *     tags:
  *          - Products
@@ -18,11 +15,17 @@ type Data = {
  */ 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<any>
 ) {
-  switch (req.method) {
-      
+  
+  if (req.method === 'GET') {
+    res.status(200).json(ProductService.Instance()
+    .getAllProducts());
   }
-
-  res.status(200).json({ name: 'John Doe22' })
+  else if (req.method === 'POST') {
+    res.status(200).json(
+      ProductService.Instance()
+      .addProduct(req.body));
+      ;
+  }  
 }
