@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next';
+import ProductService from '../../../lib/productService';
 
 type Data = {
   name: string
@@ -18,11 +19,15 @@ type Data = {
  */ 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<any>
 ) {
   switch (req.method) {
       
   }
 
-  res.status(200).json({ name: 'John Doe22' })
+  let products = new ProductService().getAllProducts(); 
+
+  console.info('products', products);
+
+  res.status(200).json(products);
 }
