@@ -2,13 +2,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import ProductService from '../../../lib/productService';
 
-type Data = {
-  name: string
-}
-
 /** 
  * @swagger 
- * /product:
+ * /api/product:
  *   get: 
  *     tags:
  *          - Products
@@ -21,13 +17,15 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  switch (req.method) {
-      
+  
+  if (req.method === 'GET') {
+    res.status(200).json(ProductService.Instance()
+    .getAllProducts());
   }
-
-  let products = new ProductService().getAllProducts(); 
-
-  console.info('products', products);
-
-  res.status(200).json(products);
+  else if (req.method === 'POST') {
+    res.status(200).json(
+      ProductService.Instance()
+      .addProduct(req.body));
+      ;
+  }  
 }
